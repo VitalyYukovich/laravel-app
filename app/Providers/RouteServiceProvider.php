@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    protected $namespace = 'App\Http\Controllers';
     /**
      * Регистрация сервис-провайдера.
      *
@@ -36,6 +37,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
+            ->as('api.')
+            ->namespace($this->namespace . '\Api')
             ->middleware('api')
             ->group(base_path('routes/api.php'));
     }
